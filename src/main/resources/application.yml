@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: commerce
+
+  profiles:
+    active: local
+
+  datasource:
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    url: jdbc:sqlserver://localhost;databaseName=ReadingOceansV2;encrypt=true;trustServerCertificate=true
+    username: sa
+    password: dlrhkstn1!
+
+  servlet:
+    multipart:
+      maxFileSize: 600MB
+      maxRequestSize: 600MB
+
+server:
+  port: 8010
+
+mybatis:
+  mapper-locations: classpath:mapper/**/*.xml
