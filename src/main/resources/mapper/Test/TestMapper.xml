@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+    <mapper namespace="com.commerce.test.mapper.TestMapper">
+        <insert id="saveTest" parameterType="com.commerce.test.dto.TestDto" >
+            insert into test (
+                testId,
+                testName
+            ) values (
+                #{testId},
+                #{testName}
+            )
+        </insert>
+
+        <select id="getTest" parameterType="string" resultType="com.commerce.test.dto.TestDto">
+            SELECT testId, testName
+              from test
+             where testId = #{testId}
+        </select>
+
+        <select id="getTestList" resultType="com.commerce.test.dto.TestDto">
+            SELECT testId, testName
+            from test
+        </select>
+    </mapper>
