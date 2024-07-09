@@ -1,4 +1,4 @@
-package config;
+package com.commerce.config;
 
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
@@ -15,8 +15,8 @@ public class SwaggerConfig {
     public OpenAPI openAPI() {
 
         Info info = new Info()
-                .title("TalkIt API")
-                .description("TalkIt API 를 제공합니다.")
+                .title("Commerce API")
+                .description("Commerce API 를 제공합니다.")
                 .version("1.0.0");
 
         // Security 스키마 설정

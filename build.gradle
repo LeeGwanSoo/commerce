@@ -6,6 +6,7 @@ plugins {
 
 group = 'com'
 version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
 
 java {
     toolchain {
@@ -24,13 +25,34 @@ repositories {
 }
 
 dependencies {
+//    implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
+//    implementation 'io.jsonwebtoken:jjwt-impl:0.11.5'
+//    implementation 'io.jsonwebtoken:jjwt-jackson:0.11.5'
+
+    implementation 'io.jsonwebtoken:jjwt-api:0.12.3'
+    implementation 'io.jsonwebtoken:jjwt-impl:0.12.3'
+    implementation 'io.jsonwebtoken:jjwt-jackson:0.12.3'
+
+//    implementation 'jakarta.servlet:jakarta.servlet-api:5.0.0'  // Jakarta Servlet API 의존성 추가
+
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+//    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+//    implementation 'org.springframework.security:spring-security-config:5.6.0'
+
     implementation 'org.springframework.boot:spring-boot-starter-web'
+//    implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+
     // swagger
     implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.1.0'
     // mybatis
     implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3'
     // mssql-jdbc
     implementation 'com.microsoft.sqlserver:mssql-jdbc'
+
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+
+//    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 
     compileOnly 'org.projectlombok:lombok'
     runtimeOnly 'com.microsoft.sqlserver:mssql-jdbc'
@@ -41,4 +63,8 @@ dependencies {
 
 tasks.named('test') {
     useJUnitPlatform()
+}
+
+bootJar {
+    archiveFileName = 'app.jar'
 }
