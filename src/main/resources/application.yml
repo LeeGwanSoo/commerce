@@ -1,23 +1,36 @@
-spring:
-  application:
-    name: commerce
+server:
+  port: 8080
+  servlet:
+    context-path: /
 
+spring:
   profiles:
     active: local
-
   datasource:
+    url: jdbc:sqlserver://localhost:1433;databaseName=commerce;integratedSecurity=false;encrypt=true;trustServerCertificate=true;
     driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
-    url: jdbc:sqlserver://localhost;databaseName=ReadingOceansV2;encrypt=true;trustServerCertificate=true
-    username: sa
-    password: dlrhkstn1!
+    username: admin
+    password: 1234
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    properties:
+      hibernate:
+        naming:
+          physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
 
-  servlet:
-    multipart:
-      maxFileSize: 600MB
-      maxRequestSize: 600MB
-
-server:
-  port: 8010
+logging:
+  level:
+    root: DEBUG
+    org:
+      springframework: DEBUG
 
 mybatis:
   mapper-locations: classpath:mapper/**/*.xml
+
+
+# JWT 설정
+jwt:
+  secret: vmfhaltmskdlstkfkdgodyroqkfwkdbalroqkfwkdbalaaaaaaaaaaaaaaaabbbbb
+#  expiration: 3600000 # 1 hour in milliseconds

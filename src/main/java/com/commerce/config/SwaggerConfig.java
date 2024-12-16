@@ -13,7 +13,6 @@ import org.springframework.http.HttpHeaders;
 public class SwaggerConfig {
     @Bean
     public OpenAPI openAPI() {
-
         Info info = new Info()
                 .title("Commerce API")
                 .description("Commerce API 를 제공합니다.")
@@ -38,5 +37,4 @@ public class SwaggerConfig {
                 .addSecurityItem(addSecurityItem)
                 .info(info);
     }
-
 }

@@ -1,26 +1,32 @@
 package com.commerce.main.controller;
 
-import com.commerce.common.ApiResponse;
-import com.commerce.common.DefaultResponse;
-import com.commerce.main.service.MainService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.Collection;
+import java.util.Iterator;
+
+@Controller
+@ResponseBody
 public class MainController {
 
-    @Autowired
-    MainService mainService;
+    @GetMapping("/")
+    public String mainP() {
 
-    @GetMapping(value = "/main/test")
-    public ApiResponse<String> getTest(){
-        ApiResponse result = new ApiResponse(true,0,"정상처리되었습니다.",null);
-        String res = mainService.getTest();
+        String name = SecurityContextHolder.getContext().getAuthentication().getName();
 
-        result.setData(res);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
-        return result;
+        Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
+        Iterator<? extends GrantedAuthority> iter = authorities.iterator();
+        GrantedAuthority auth = iter.next();
+        String role = auth.getAuthority();
+
+        return "main Controller" + name + role;
     }
-
 }
